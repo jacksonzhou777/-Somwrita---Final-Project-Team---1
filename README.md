@@ -22,7 +22,7 @@ Our team will implement four distinct mechanics to drive the "Liquid Resonance" 
     *   **Connection:** It provides the primary interactive layer, allowing users to directly influence the visual outcome of the piece.
     *   **Reference:** [p5.js Mouse Interaction](https://p5js.org/reference/p5/mouseClicked/)
 
-*   **[Member 2 Name] - Audio**
+*   **[Shan Jin] - Audio**
     *   **Description:** Using the `p5.AudioIn` library, this mechanic monitors real-time sound levels. The volume (amplitude) is mapped to the initial radius and stroke weight of the ripples created.
     *   **Connection:** This connects the physical energy of the environment to the digital visualization, making the ripples "react" to the surrounding soundscape.
 
