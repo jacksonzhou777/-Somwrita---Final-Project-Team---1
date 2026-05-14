@@ -17,22 +17,20 @@
 
 Our team will implement four distinct mechanics to drive the "Liquid Resonance" experience:
 
-### [Ruitong Zhou] - User Input: The Kinetic Catalyst
 
-**Description:** 
-This mechanic transforms user interactions into physical energy within the digital environment. Beyond simple coordinate capture, I have implemented a **Temporal-to-Kinetic Mapping** system:
-1. **Pressure Simulation:** By utilizing `millis()` within the `mousePressed()` and `mouseReleased()` events, the system calculates the duration of each click. A longer press duration directly correlates to a higher "Initial Energy" value, resulting in a ripple with a larger maximum radius and a more intense stroke weight.
-2. **Reactive Displacement:** The propagation speed ($v$) is not constant. It is dynamically calculated based on the vector distance from the click point $(x, y)$ to the canvas center. This creates a "Reactive Displacement" effect—clicks further from the center generate faster, more aggressive waves, simulating the tension of a physical water surface.
-3. **Performance Logic:** To maintain a smooth 60fps experience, I implemented an automated lifecycle manager that prunes the ripple array as soon as an object's energy (alpha) dissipates.
+*   **[Ruitong Zhou] - User Input**
 
-**Connection:** 
-This mechanic serves as the **Spatial and Intentional Anchor** for a multi-layered generative ecosystem. Rather than acting in isolation, my input system is designed to trigger and harmonize with the team's other active forces:
-* **Synergy with Audio:** My ripples provide the canvas for **Member 2’s (Shan Jin)** audio input to act upon, where real-time sound levels dynamically scale the intensity of the user’s existing waves.
-* **Synergy with Noise:** The ripples I generate are immediately influenced by **Member 3’s (Huginn Xing)** Perlin noise, which introduces organic "wind-like" deformations and secondary chain reactions, making a simple click feel like a complex natural event.
-* **Synergy with Time:** The lifecycle of my "Kinetic Catalyst" is governed by **Member 4’s (Ruidong Xu)** time-based system, which manages the non-linear decay of the energy I inject, while his autonomous "pulse" events ensure the system remains alive even in the absence of user input.
+    *   **Description:**
+        This mechanic transforms user interactions into physical energy within the digital environment. Beyond simple coordinate capture, I have implemented a **Temporal-to-Kinetic Mapping** system:
+        1. **Pressure Simulation:** By utilizing `millis()` within the `mousePressed()` and `mouseReleased()` events, the system calculates the duration of each click. A longer press duration directly correlates to a higher "Initial Energy" value, resulting in a ripple with a larger maximum radius and a more intense stroke weight.
+        2. **Reactive Displacement:** The propagation speed ($v$) is not constant. It is dynamically calculated based on the vector distance from the click point $(x, y)$ to the canvas center. This creates a "Reactive Displacement" effect—clicks further from the center generate faster, more aggressive waves, simulating the tension of a physical water surface.
+        3. **Performance Logic:** To maintain a smooth 60fps experience, I implemented an automated lifecycle manager that prunes the ripple array as soon as an object's energy (alpha) dissipates.
 
-**Interaction Logic Diagram:**
-![Energy Mapping Logic](https://p5js.org/assets/learn/coordinate-system-and-shapes/coords-offset.png)
+    *   **Connection:**
+        This mechanic serves as the **Spatial and Intentional Anchor** for a multi-layered generative ecosystem. Rather than acting in isolation, my input system is designed to trigger and harmonize with the team's other active forces:
+        *   **Synergy with Audio:** My ripples provide the canvas for **Member 2’s (Shan Jin)** audio input to act upon, where real-time sound levels dynamically scale the intensity of the user’s existing waves.
+        *   **Synergy with Noise:** The ripples I generate are immediately influenced by **Member 3’s (Huginn Xing)** Perlin noise, which introduces organic "wind-like" deformations and secondary chain reactions, making a simple click feel like a complex natural event.
+        *   **Synergy with Time:** The lifecycle of my "Kinetic Catalyst" is governed by **Member 4’s (Ruidong Xu)** time-based system, which manages the non-linear decay of the energy I inject, while his autonomous "pulse" events ensure the system remains alive even in the absence of user input.
 
 *   **[Shan Jin] - Audio**
     *   **Description:** Using real-time audio input to generate ripple patterns. Amplitude (volume) controls ripple size and intensity, while frequency content affects spatial placement: low frequencies appear near the center and higher frequencies toward the edges. Ripples expand, overlap, and gradually fade, creating a continuous visual flow.
