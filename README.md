@@ -35,7 +35,7 @@ Our team will implement four distinct mechanics to drive the "Liquid Resonance" 
 
  *   **Connection:** It enhances the visual "depth" and realism, making the canva more real and alive.
 
-*   **[Member 4 Name] - Time-based**
+*   **[Ruidong Xu] - Time-based**
     *   **Description:** This mechanic utilizes the `frameCount` and internal timers to manage the lifecycle of each ripple. As time progresses, the ripple’s radius increases while its `alpha` (transparency) value decreases.
     *   **Connection:** This simulates the natural energy loss (amplitude decay) of a wave, ensuring the canvas remains balanced and meditative.
 
