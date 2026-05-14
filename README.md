@@ -36,8 +36,8 @@ Our team will implement four distinct mechanics to drive the "Liquid Resonance" 
  *   **Connection:** It enhances the visual "depth" and realism, making the canva more real and alive.
 
 *   **[Ruidong Xu] - Time-based**
-    *   **Description:** This mechanic utilizes the `frameCount` and internal timers to manage the lifecycle of each ripple. As time progresses, the ripple’s radius increases while its `alpha` (transparency) value decreases.
-    *   **Connection:** This simulates the natural energy loss (amplitude decay) of a wave, ensuring the canvas remains balanced and meditative.
+    *   **Description:** This mechanic governs the complete lifecycle of every ripple on the canvas using 'frameCount' and interval-based timers. When a ripple is born — whether triggered by user input, audio, or random generation — the time-based system immediately begins tracking its age. As frames accumulate, the ripple's radius expands outward at a controlled rate, while its 'alpha' value follows a non-linear decay curve: fading slowly at first, then accelerating toward full transparency. Beyond individual ripple decay, this mechanic also schedules periodic "pulse" events — autonomous ripples that emerge at timed intervals independent of user action, ensuring the canvas never falls completely silent. The timing intervals themselves shift subtly over time, creating a breathing rhythm that feels organic rather than mechanical. Together, these temporal controls maintain visual balance: preventing ripple accumulation from overwhelming the canvas while preserving a continuous, meditative flow.
+    *   **Connection:** By simulating the natural energy dissipation of physical waves, the time-based system ensures the piece remains calm and balanced even during intense interaction. It is the invisible force that keeps "Liquid Resonance" in equilibrium — every impact eventually fades, making space for the next.
 
 ---
 
