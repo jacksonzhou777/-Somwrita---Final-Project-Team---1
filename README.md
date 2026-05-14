@@ -26,9 +26,14 @@ Our team will implement four distinct mechanics to drive the "Liquid Resonance" 
     *   **Description:** Using real-time audio input to generate ripple patterns. Amplitude (volume) controls ripple size and intensity, while frequency content affects spatial placement: low frequencies appear near the center and higher frequencies toward the edges. Ripples expand, overlap, and gradually fade, creating a continuous visual flow.
     *   **Connection:** Users interact through voice or music, directly shaping the visuals in real time. This creates an intuitive feedback loop between sound and image. The expanding circular forms reflect water ripple diffusion, translating the original inspiration into an interactive, time-based generative experience.
 
-*   **[Member 3 Name] - Perlin Noise**
-    *   **Description:** Instead of rendering perfect geometric circles, this mechanic uses **Perlin noise** to displace the vertices of each ripple ring. This creates an organic, shimmering effect that mimics real fluid dynamics.
-    *   **Connection:** It enhances the visual "depth" and realism, moving away from a sterile digital look to a more natural, fluid aesthetic.
+*   **[Huginn Xing] - Perlin Noise and Randomness**
+    *   **Description:** 1.Ripple edge deformation - Perlin noise distorts the edge of each of each ripple, create irregular forms that more like real water movement. 2.Ripple speed variation - Random numbers make speed variable, make motion more alive.
+ ![random sketech 1](Images/Random1.png)
+  
+   * 3.Random ripple generation - Instead of just user input to generate ripples, they will show up as random sizes and positions based on time-based. 4.Secondary ripples - User-input- generated ripples will creates chain reactions, secondary ripples will appear belong main ripples.
+![random sketech 2](Images/Random2.png)
+
+ *   **Connection:** It enhances the visual "depth" and realism, making the canva more real and alive.
 
 *   **[Member 4 Name] - Time-based**
     *   **Description:** This mechanic utilizes the `frameCount` and internal timers to manage the lifecycle of each ripple. As time progresses, the ripple’s radius increases while its `alpha` (transparency) value decreases.
