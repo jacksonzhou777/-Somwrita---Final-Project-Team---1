@@ -28,9 +28,9 @@ Our team will implement four distinct mechanics to drive the "Liquid Resonance" 
 
     *   **Connection:**
         This mechanic serves as the **Spatial and Intentional Anchor** for a multi-layered generative ecosystem. Rather than acting in isolation, my input system is designed to trigger and harmonize with the team's other active forces:
-        *   **Synergy with Audio:** My ripples provide the canvas for **Member 2’s (Shan Jin)** audio input to act upon, where real-time sound levels dynamically scale the intensity of the user’s existing waves.
-        *   **Synergy with Noise:** The ripples I generate are immediately influenced by **Member 3’s (Huginn Xing)** Perlin noise, which introduces organic "wind-like" deformations and secondary chain reactions, making a simple click feel like a complex natural event.
-        *   **Synergy with Time:** The lifecycle of my "Kinetic Catalyst" is governed by **Member 4’s (Ruidong Xu)** time-based system, which manages the non-linear decay of the energy I inject, while his autonomous "pulse" events ensure the system remains alive even in the absence of user input.
+        1. **Synergy with Audio:** My ripples provide the canvas for **Member 2’s (Shan Jin)** audio input to act upon, where real-time sound levels dynamically scale the intensity of the user’s existing waves.
+        2. **Synergy with Noise:** The ripples I generate are immediately influenced by **Member 3’s (Huginn Xing)** Perlin noise, which introduces organic "wind-like" deformations and secondary chain reactions, making a simple click feel like a complex natural event.
+        3. **Synergy with Time:** The lifecycle of my "Kinetic Catalyst" is governed by **Member 4’s (Ruidong Xu)** time-based system, which manages the non-linear decay of the energy I inject, while his autonomous "pulse" events ensure the system remains alive even in the absence of user input.
 
 *   **[Shan Jin] - Audio**
     *   **Description:** Using real-time audio input to generate ripple patterns. Amplitude (volume) controls ripple size and intensity, while frequency content affects spatial placement: low frequencies appear near the center and higher frequencies toward the edges. Ripples expand, overlap, and gradually fade, creating a continuous visual flow.
