@@ -23,8 +23,8 @@ Our team will implement four distinct mechanics to drive the "Liquid Resonance" 
     *   **Reference:** [p5.js Mouse Interaction](https://p5js.org/reference/p5/mouseClicked/)
 
 *   **[Shan Jin] - Audio**
-    *   **Description:** Using the `p5.AudioIn` library, this mechanic monitors real-time sound levels. The volume (amplitude) is mapped to the initial radius and stroke weight of the ripples created.
-    *   **Connection:** This connects the physical energy of the environment to the digital visualization, making the ripples "react" to the surrounding soundscape.
+    *   **Description:** Using real-time audio input to generate ripple patterns. Amplitude (volume) controls ripple size and intensity, while frequency content affects spatial placement: low frequencies appear near the center and higher frequencies toward the edges. Ripples expand, overlap, and gradually fade, creating a continuous visual flow.
+    *   **Connection:** Users interact through voice or music, directly shaping the visuals in real time. This creates an intuitive feedback loop between sound and image. The expanding circular forms reflect water ripple diffusion, translating the original inspiration into an interactive, time-based generative experience.
 
 *   **[Member 3 Name] - Perlin Noise**
     *   **Description:** Instead of rendering perfect geometric circles, this mechanic uses **Perlin noise** to displace the vertices of each ripple ring. This creates an organic, shimmering effect that mimics real fluid dynamics.
