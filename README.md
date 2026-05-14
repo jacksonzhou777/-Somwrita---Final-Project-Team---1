@@ -28,10 +28,10 @@ Our team will implement four distinct mechanics to drive the "Liquid Resonance" 
 
 *   **[Huginn Xing] - Perlin Noise and Randomness**
     *   **Description:** 1.Ripple edge deformation - Perlin noise distorts the edge of each of each ripple, create irregular forms that more like real water movement. 2.Ripple speed variation - Random numbers make speed variable, make motion more alive.
- ![random sketech 1](Images/Random1.png)
+ ![random sketech 1](Images/Random1.PNG)
   
    * 3.Random ripple generation - Instead of just user input to generate ripples, they will show up as random sizes and positions based on time-based. 4.Secondary ripples - User-input- generated ripples will creates chain reactions, secondary ripples will appear belong main ripples.
-![random sketech 2](Images/Random2.png)
+![random sketech 2](Images/Random2.PNG)
 
  *   **Connection:** It enhances the visual "depth" and realism, making the canva more real and alive.
 
