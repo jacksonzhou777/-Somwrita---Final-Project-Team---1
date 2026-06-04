@@ -1,28 +1,41 @@
-let inputClickPosition = null;
+let pressStartTime = 0;
+let pendingRipple = false;
+let rippleX = 0;
+let rippleY = 0;
+let rippleIntensity = 1;
 
 function setupInputMechanic() {
 }
 
 function mousePressed() {
-  inputClickPosition = {
-    x: mouseX,
-    y: mouseY
-  };
+  pressStartTime = millis();
+}
+
+function mouseReleased() {
+  let pressDuration = millis() - pressStartTime;
+  
+  pressDuration = constrain(pressDuration, 0, 2000); 
+  
+  rippleIntensity = map(pressDuration, 0, 2000, 0.5, 3.0); 
+
+  rippleX = mouseX;
+  rippleY = mouseY;
+  pendingRipple = true; 
 }
 
 function getInputMechanicValue() {
-  if (inputClickPosition === null) {
+  if (pendingRipple) {
+    pendingRipple = false;
+    
     return {
-      shouldCreateRipple: false
+      shouldCreateRipple: true,
+      x: rippleX,
+      y: rippleY,
+      intensity: rippleIntensity 
     };
   }
 
-  const value = {
-    shouldCreateRipple: true,
-    x: inputClickPosition.x,
-    y: inputClickPosition.y
+  return {
+    shouldCreateRipple: false
   };
-
-  inputClickPosition = null;
-  return value;
 }

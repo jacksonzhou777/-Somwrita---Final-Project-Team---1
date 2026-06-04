@@ -18,7 +18,7 @@ function draw() {
   const randomValue = getRandomRippleValue();
 
   if (inputValue.shouldCreateRipple) {
-    createRipple(inputValue.x, inputValue.y, "input");
+    createRipple(inputValue.x, inputValue.y, "input", inputValue.intensity); 
   }
 
   if (randomValue.shouldCreateRipple) {
@@ -41,9 +41,14 @@ function draw() {
   }
 }
 
-function createRipple(x, y, source) {
+function createRipple(x, y, source, intensity = 1) { 
   const randomProfile = getRandomRippleProfile(source);
-  ripples.push(new Ripple(x, y, source, randomProfile));
+  
+  if (source === "input") {
+    randomProfile.baseNoiseStrength *= intensity; 
+  }
+  
+  ripples.push(new Ripple(x, y, source, randomProfile)); 
 }
 
 function windowResized() {
