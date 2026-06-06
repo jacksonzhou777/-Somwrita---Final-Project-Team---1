@@ -1,9 +1,4 @@
 let ripples = [];
-let bgImage;
-
-function preload() {
-  bgImage = loadImage('../Images/bottom picture.png');
-}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -16,12 +11,7 @@ function setup() {
 }
 
 function draw() {
-  background(8, 12, 18);
-  // cover fit: scale to fill canvas, crop excess top/bottom
-  const scale = max(width / bgImage.width, height / bgImage.height);
-  const drawW = bgImage.width * scale;
-  const drawH = bgImage.height * scale;
-  image(bgImage, (width - drawW) / 2, (height - drawH) / 2, drawW, drawH);
+  background(22, 38, 32); // dark pond green
 
   const inputValue  = getInputMechanicValue();
   const audioValue  = getAudioMechanicValue();
@@ -42,18 +32,21 @@ function draw() {
     createRipple(pulseValue.x, pulseValue.y, "time", pulseValue.intensity);
   }
 
+  // SCREEN lightens where ripple rings overlap — light glinting on dark water
+  blendMode(SCREEN);
   for (let i = ripples.length - 1; i >= 0; i--) {
     const ripple = ripples[i];
     const timeValue = getTimeMechanicValue(ripple);
     const noiseValue = getNoiseMechanicValue(ripple, audioValue);
 
     ripple.update(timeValue, noiseValue);
-    ripple.display();
+    ripple.display(ripples);
 
     if (ripple.isFinished()) {
       ripples.splice(i, 1);
     }
   }
+  blendMode(BLEND);
 }
 
 function createRipple(x, y, source, intensity = 1) { 
