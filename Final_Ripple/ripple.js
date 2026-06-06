@@ -10,9 +10,6 @@ class Ripple {
     this.noiseScale = randomProfile.noiseScale;
     this.baseNoiseStrength = randomProfile.baseNoiseStrength;
     this.strokeWeight = randomProfile.strokeWeight;
-    this.r = randomProfile.r;
-    this.g = randomProfile.g;
-    this.b = randomProfile.b;
   }
 
   update(timeValue, noiseValue) {
@@ -23,29 +20,46 @@ class Ripple {
     this.noiseSpeed = noiseValue.speed;
   }
 
-  display() {
-    const sourceAlpha = this.source === "random" ? 0.38 : 1;
-
-    this.displayLayer(1, 1 * sourceAlpha, 1);
-    this.displayLayer(0.72, 0.7 * sourceAlpha, 0.85);
-    this.displayLayer(0.44, 0.45 * sourceAlpha, 0.65);
+  display(allRipples) {
+    const rings = [
+      { rMult: 1.00, aMult: 1.0  },
+      { rMult: 0.76, aMult: 0.7  },
+      { rMult: 0.52, aMult: 0.45 },
+      { rMult: 0.30, aMult: 0.25 },
+    ];
+    for (const ring of rings) {
+      this.displayRing(ring.rMult, ring.aMult, allRipples);
+    }
   }
 
-  displayLayer(radiusMultiplier, alphaMultiplier, noiseMultiplier) {
-    stroke(this.r, this.g, this.b, this.alpha * alphaMultiplier);
-    strokeWeight(this.strokeWeight);
+  displayRing(radiusMultiplier, alphaMultiplier, allRipples) {
+    stroke(180, 210, 200, this.alpha * alphaMultiplier); // silver-green, like light on pond
+    strokeWeight(1.2);
+    noFill();
     beginShape();
 
-    for (let angle = 0; angle < TWO_PI; angle += 0.08) {
+    for (let angle = 0; angle < TWO_PI; angle += 0.06) {
       const noiseX = cos(angle) * this.noiseScale + this.seed;
       const noiseY = sin(angle) * this.noiseScale + this.seed;
       const n = noise(noiseX, noiseY, this.noiseSpeed);
-      const strength = this.noiseStrength * noiseMultiplier;
-      const offset = map(n, 0, 1, -strength, strength);
-      const noisyRadius = this.radius * radiusMultiplier + offset;
-      const x = this.x + cos(angle) * noisyRadius;
-      const y = this.y + sin(angle) * noisyRadius;
-      vertex(x, y);
+      const offset = map(n, 0, 1, -this.noiseStrength * 0.25, this.noiseStrength * 0.25);
+
+      let r = this.radius * radiusMultiplier + offset;
+
+      // Wave interference: deform this ring based on every other ripple's wave
+      for (const other of allRipples) {
+        if (other === this) continue;
+        const px = this.x + cos(angle) * r;
+        const py = this.y + sin(angle) * r * 0.42;
+        const d = dist(px, py, other.x, other.y);
+        const otherAge = millis() - other.createdAt;
+        // Sine wave from the other ripple at this point
+        const wave = sin(d * 0.06 - otherAge * 0.003) * (other.alpha / 255);
+        r += wave * 4; // 4px max deformation
+      }
+
+      // Y compressed for 3D perspective ellipse
+      vertex(this.x + cos(angle) * r, this.y + sin(angle) * r * 0.42);
     }
 
     endShape(CLOSE);
