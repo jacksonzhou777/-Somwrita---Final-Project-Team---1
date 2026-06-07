@@ -1,4 +1,5 @@
 let ripples = [];
+let canvasPressed = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -11,62 +12,73 @@ function setup() {
 }
 
 function draw() {
-  background(22, 38, 32); // dark pond green
+  background(22, 38, 32);
 
-  const inputValue  = getInputMechanicValue();
-  const audioValue  = getAudioMechanicValue();
+  const inputValue = getInputMechanicValue();
+  const audioValue = getAudioMechanicValue();
   const randomValue = getRandomRippleValue();
-  const pulseValue  = getTimePulseValue();
+  const pulseValue = getTimePulseValue();
+
+  if (audioValue.shouldCreateRipple) {
+    createRipple(random(width),random(height),"audio");
+  }
 
   if (inputValue.shouldCreateRipple) {
-    createRipple(inputValue.x, inputValue.y, "input", inputValue.intensity); 
+    createRipple(inputValue.x,inputValue.y,"input",inputValue.intensity);
   }
 
   if (randomValue.shouldCreateRipple) {
     for (const position of randomValue.positions) {
-      createRipple(position.x, position.y, "random");
+      createRipple(position.x,position.y,"random");
     }
   }
 
   if (pulseValue.shouldPulse) {
-    createRipple(pulseValue.x, pulseValue.y, "time", pulseValue.intensity);
+    createRipple(pulseValue.x,pulseValue.y,"time",pulseValue.intensity);
   }
 
-  // SCREEN lightens where ripple rings overlap — light glinting on dark water
   blendMode(SCREEN);
+
   for (let i = ripples.length - 1; i >= 0; i--) {
     const ripple = ripples[i];
-    const secondaryValue = getSecondaryRippleValue(ripple);
-
-    if (secondaryValue.shouldCreateRipple) {
-      for (const position of secondaryValue.positions) {
-        createRipple(position.x, position.y, "secondary", position.intensity, position.color);
-      }
-    }
-
     const timeValue = getTimeMechanicValue(ripple);
-    const noiseValue = getNoiseMechanicValue(ripple, audioValue);
+    const noiseValue = getNoiseMechanicValue(ripple,audioValue);
 
-    ripple.update(timeValue, noiseValue);
+    ripple.update(timeValue,noiseValue,audioValue);
     ripple.display(ripples);
 
     if (ripple.isFinished()) {
       ripples.splice(i, 1);
     }
   }
+
   blendMode(BLEND);
 }
 
-function createRipple(x, y, source, intensity = 1, colorOverride) { 
-  const randomProfile = getRandomRippleProfile(source, colorOverride);
-  
-  if (source === "input" || source === "time" || source === "secondary") {
+function createRipple(x, y, source, intensity = 1) {
+
+  const randomProfile = getRandomRippleProfile(source);
+
+  if (source === "input" || source === "time") {
     randomProfile.baseNoiseStrength *= intensity;
   }
-  
-  ripples.push(new Ripple(x, y, source, randomProfile)); 
+
+  ripples.push(new Ripple(x,y,source,randomProfile));
+}
+
+function mousePressed() {
+
+  if (!canvasPressed) {
+    userStartAudio();
+
+    if (soundFile && !soundFile.isPlaying()) {
+      soundFile.loop();
+    }
+
+    canvasPressed = true;
+  }
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth,windowHeight);
 }
