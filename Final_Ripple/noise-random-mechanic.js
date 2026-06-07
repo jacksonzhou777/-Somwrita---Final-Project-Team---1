@@ -1,13 +1,19 @@
+// Noise and randomness mechanic - Huginn Xing
+// Adds organic variation through Perlin noise,
+// autonomous random ripples, and input-triggered secondary ripples.
+
 let nextRandomRippleTime = 0;
 
 function setupNoiseRandomMechanic() {
   scheduleNextRandomRipple();
 }
 
+// Sets the next autonomous ripple event at an irregular interval.
 function scheduleNextRandomRipple() {
   nextRandomRippleTime = millis() + random(5000, 12000);
 }
 
+// Called every frame. Returns random ripple positions when the timer fires.
 function getRandomRippleValue() {
   if (millis() < nextRandomRippleTime) {
     return {
@@ -34,6 +40,8 @@ function getRandomRippleValue() {
   };
 }
 
+// Creates a unique visual profile for each ripple.
+// Random seeds and noise settings make every ripple deform differently.
 function getRandomRippleProfile(source, colorOverride) {
   const rippleColor = colorOverride || getRippleColor(source);
 
@@ -48,6 +56,9 @@ function getRandomRippleProfile(source, colorOverride) {
   };
 }
 
+// Called every frame for each active ripple.
+// ChatGPT helped generate this secondary ripple logic: only input ripples
+// can trigger short-lived nearby chain reactions with inherited color.
 function getSecondaryRippleValue(ripple) {
   if (ripple.source !== "input" || ripple.hasCreatedSecondary) {
     return {
@@ -98,6 +109,8 @@ function getSecondaryRippleValue(ripple) {
   };
 }
 
+// Chooses the base color for new ripples.
+// Secondary ripples inherit their input ripple color through colorOverride.
 function getRippleColor(source) {
   if (source === "input") {
     return {
@@ -114,6 +127,8 @@ function getRippleColor(source) {
   };
 }
 
+// Returns Perlin noise values used to distort each ripple edge.
+// Audio can increase the deformation strength when sound input is active.
 function getNoiseMechanicValue(ripple, audioValue) {
   const audioBoost = map(audioValue.level, 0, 1, 0, 42, true);
 
