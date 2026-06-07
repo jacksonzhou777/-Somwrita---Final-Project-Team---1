@@ -10,6 +10,9 @@ class Ripple {
     this.noiseScale = randomProfile.noiseScale;
     this.baseNoiseStrength = randomProfile.baseNoiseStrength;
     this.strokeWeight = randomProfile.strokeWeight;
+    this.r = randomProfile.r;
+    this.g = randomProfile.g;
+    this.b = randomProfile.b;
   }
 
   update(timeValue, noiseValue) {
@@ -33,8 +36,8 @@ class Ripple {
   }
 
   displayRing(radiusMultiplier, alphaMultiplier, allRipples) {
-    stroke(180, 210, 200, this.alpha * alphaMultiplier); // silver-green, like light on pond
-    strokeWeight(1.2);
+    stroke(this.r, this.g, this.b, this.alpha * alphaMultiplier); 
+    strokeWeight(this.strokeWeight);
     noFill();
     beginShape();
 

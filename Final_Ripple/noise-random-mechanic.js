@@ -5,7 +5,7 @@ function setupNoiseRandomMechanic() {
 }
 
 function scheduleNextRandomRipple() {
-  nextRandomRippleTime = millis() + random(3000, 7000);
+  nextRandomRippleTime = millis() + random(5000, 12000);
 }
 
 function getRandomRippleValue() {
@@ -19,7 +19,7 @@ function getRandomRippleValue() {
   scheduleNextRandomRipple();
 
   const positions = [];
-  const rippleCount = floor(random(1, 6));
+  const rippleCount = floor(random(1, 3));
 
   for (let i = 0; i < rippleCount; i++) {
     positions.push({
@@ -59,8 +59,8 @@ function getRippleColor(source) {
 
   return {
     r: 180,
-    g: 220,
-    b: 255
+    g: 210,
+    b: 200,
   };
 }
 
