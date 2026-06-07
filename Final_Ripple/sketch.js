@@ -36,6 +36,14 @@ function draw() {
   blendMode(SCREEN);
   for (let i = ripples.length - 1; i >= 0; i--) {
     const ripple = ripples[i];
+    const secondaryValue = getSecondaryRippleValue(ripple);
+
+    if (secondaryValue.shouldCreateRipple) {
+      for (const position of secondaryValue.positions) {
+        createRipple(position.x, position.y, "secondary", position.intensity, position.color);
+      }
+    }
+
     const timeValue = getTimeMechanicValue(ripple);
     const noiseValue = getNoiseMechanicValue(ripple, audioValue);
 
@@ -49,10 +57,10 @@ function draw() {
   blendMode(BLEND);
 }
 
-function createRipple(x, y, source, intensity = 1) { 
-  const randomProfile = getRandomRippleProfile(source);
+function createRipple(x, y, source, intensity = 1, colorOverride) { 
+  const randomProfile = getRandomRippleProfile(source, colorOverride);
   
-  if (source === "input" || source === "time") {
+  if (source === "input" || source === "time" || source === "secondary") {
     randomProfile.baseNoiseStrength *= intensity;
   }
   

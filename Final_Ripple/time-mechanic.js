@@ -20,13 +20,16 @@ function getTimeMechanicValue(ripple) {
                    ripple.source === 'input' ? 5000 : 6000;
   const age = millis() - ripple.createdAt;
   const t = constrain(age / lifetime, 0, 1);
+  const alphaT = ripple.source === 'secondary'
+    ? constrain(age / (lifetime * 0.5), 0, 1)
+    : t;
 
   // easeInQuad: slow start, faster expansion — mimics real water physics
   const maxRadius = max(windowWidth, windowHeight) * 0.65;
   const radius = maxRadius * easeInQuad(t);
 
   // easeOutCubic: quick initial fade that lingers — more natural dissipation
-  const alpha = 255 * easeOutCubic(1 - t);
+  const alpha = 255 * easeOutCubic(1 - alphaT);
 
   return { radius, alpha };
 }

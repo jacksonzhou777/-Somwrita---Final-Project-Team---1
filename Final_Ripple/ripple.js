@@ -24,12 +24,18 @@ class Ripple {
   }
 
   display(allRipples) {
-    const rings = [
-      { rMult: 1.00, aMult: 1.0  },
-      { rMult: 0.76, aMult: 0.7  },
-      { rMult: 0.52, aMult: 0.45 },
-      { rMult: 0.30, aMult: 0.25 },
-    ];
+    const rings = this.source === "secondary"
+      ? [
+          { rMult: 1.00, aMult: 0.65 },
+          { rMult: 0.62, aMult: 0.35 },
+        ]
+      : [
+          { rMult: 1.00, aMult: 1.0  },
+          { rMult: 0.76, aMult: 0.7  },
+          { rMult: 0.52, aMult: 0.45 },
+          { rMult: 0.30, aMult: 0.25 },
+        ];
+
     for (const ring of rings) {
       this.displayRing(ring.rMult, ring.aMult, allRipples);
     }
