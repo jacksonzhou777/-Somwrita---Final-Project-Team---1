@@ -102,7 +102,7 @@ class Ripple {
       const n = noise(noiseX,noiseY,this.noiseSpeed);
       const offset = map(n,0,1,-this.noiseStrength * 0.25,this.noiseStrength * 0.25);
 
-      let r =this.radius *radiusMultiplier +noffset;
+      let r =this.radius *radiusMultiplier +offset;
 
       for (const other of allRipples) {
 
