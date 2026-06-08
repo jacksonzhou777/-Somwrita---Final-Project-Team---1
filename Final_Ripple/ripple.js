@@ -73,7 +73,7 @@ class Ripple {
       for (let i = 0; i < particleCount; i++) {
 
         const angle =(TWO_PI * i) / particleCount;
-        const waveOffset = sin(frameCount * 0.05 + i * 0.3) * 4;
+        const waveOffset = sin(frameCount * 0.05 + i * 0.3) * 1.5;
         const r = ringRadius + waveOffset;
         const x = this.x + cos(angle) * r;
         const y =this.y + sin(angle) * r * 0.42;
