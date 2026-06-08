@@ -58,6 +58,7 @@ Open `index.html` in the `Final_Ripple` folder.
 
 - Wait without interacting to see timed pulse ripples and random autonomous ripples.
 - Click anywhere on the canvas to create a ripple.
+- Click anywhere on the canvas to play the music.
 - Hold the mouse button longer before releasing to create a stronger input ripple.
 - Watch for smaller secondary ripples that may appear near input-generated ripples.
 - Also canvas will adapt to the screen size.
