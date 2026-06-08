@@ -19,8 +19,8 @@ Key p5.js techniques include:
 - `sin()`, `cos()`, and `vertex()` to draw custom distorted elliptical rings.
 - `blendMode(SCREEN)` to make overlapping rings glow like light reflecting on water.
 - `mousePressed()` and `mouseReleased()` to turn user input into ripple energy.
-- `p5.FFT() to analyse bass and treble frequency content from the audio track and drive ripple behaviour.
-- `loadSound() and p5.Amplitude() to load audio files and measure sound intensity for audio-reactive interactions.
+- `p5.FFT()` to analyse bass and treble frequency content from the audio track and drive ripple behaviour.
+- `loadSound()` and `p5.Amplitude()` to load audio files and measure sound intensity for audio-reactive interactions.
 
 The project is structured so that each mechanic returns values or events, while `sketch.js` stays responsible for combining them and creating ripples. This keeps the mechanics separate but allows them to act on the same visual system.
 
