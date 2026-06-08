@@ -1,8 +1,5 @@
 let pressStartTime = 0;
-let pendingRipple = false;
-let rippleX = 0;
-let rippleY = 0;
-let rippleIntensity = 1;
+let skipQueue = []; 
 
 function setupInputMechanic() {
 }
@@ -14,24 +11,56 @@ function onInputMousePressed() {
 function onInputMouseReleased() {
   let pressDuration = millis() - pressStartTime;
   
-  pressDuration = constrain(pressDuration, 0, 3000); 
-  rippleIntensity = map(pressDuration, 0, 3000, 0.05, 8.0);
+  pressDuration = constrain(pressDuration, 0, 2000); 
 
-  rippleX = mouseX;
-  rippleY = mouseY;
-  pendingRipple = true; 
+  let initialIntensity = map(pressDuration, 0, 2000, 0.5, 2);
+  
+  let skipCount = floor(map(pressDuration, 0, 2000, 3, 12));
+  
+  let skipDistance = map(pressDuration, 0, 2000, 20, 150);
+
+  let targetX = width / 2;
+  let targetY = height / 2;
+  
+  let baseAngle = atan2(targetY - mouseY, targetX - mouseX);
+  
+  let angle = baseAngle + random(-PI/6, PI/6);
+
+  let currentX = mouseX;
+  let currentY = mouseY;
+  let currentTime = millis();
+
+  for (let i = 0; i < skipCount; i++) {
+    
+    let currentIntensity = initialIntensity * pow(0.7, i);
+
+    skipQueue.push({
+      x: currentX,
+      y: currentY,
+      intensity: currentIntensity,
+      triggerTime: currentTime + i * 250 
+    });
+
+    currentX += cos(angle) * skipDistance;
+    currentY += sin(angle) * skipDistance;
+  }
 }
 
 function getInputMechanicValue() {
-  if (pendingRipple) {
-    pendingRipple = false;
-    
-    return {
-      shouldCreateRipple: true,
-      x: rippleX,
-      y: rippleY,
-      intensity: rippleIntensity 
-    };
+  if (skipQueue.length > 0) {
+    let currentTime = millis();
+
+    if (currentTime >= skipQueue[0].triggerTime) {
+      
+      let skip = skipQueue.shift(); 
+
+      return {
+        shouldCreateRipple: true,
+        x: skip.x,
+        y: skip.y,
+        intensity: skip.intensity
+      };
+    }
   }
 
   return {

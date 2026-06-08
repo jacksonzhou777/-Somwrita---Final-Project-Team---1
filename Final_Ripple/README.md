@@ -24,11 +24,22 @@ Key p5.js techniques include:
 
 The project is structured so that each mechanic returns values or events, while `sketch.js` stays responsible for combining them and creating ripples. This keeps the mechanics separate but allows them to act on the same visual system.
 
+## Interaction Instructions
+
+Open `index.html` in the `Final_Ripple` folder.
+
+- Wait without interacting to see timed pulse ripples and random autonomous ripples.
+- Hold and release the mouse to throw a "skipping stone". The longer you hold, the more bounces you get. The ripples will travel towards the center and get smaller each time.
+- Click anywhere on the canvas to play the music.
+- Hold the mouse button longer before releasing to create a stronger input ripple.
+- Watch for smaller secondary ripples that may appear near input-generated ripples.
+- Also canvas will adapt to the screen size.
+
 ## Mechanic Ownership
 
 **Ruitong Zhou - User Input**
 
-The user input mechanic turns mouse interaction into ripple events. A longer press creates a stronger ripple by mapping press duration to intensity. This makes user interaction feel like physical energy being placed into the water.
+The user input mechanic turns mouse clicks into a "skipping stone" effect. How long you hold the mouse decides how big the ripple is, how many times it bounces, and how far it goes. It uses atan2 to make the ripples always move towards the center of the screen. Each bounce gets smaller and smaller, making it look like real energy fading away.
 
 **Shan Jin - Audio**
 
@@ -54,13 +65,3 @@ ChatGPT was also used to check grammar and sentence sturcture to enhance readibi
 - [p5.sound](https://p5js.org/reference/#/libraries/p5.sound) was included for the audio mechanic.
 - [p5.js noise reference](https://p5js.org/reference/#/p5/noise) influenced the Perlin noise technique used to distort the ripple edges.
 
-## Interaction Instructions
-
-Open `index.html` in the `Final_Ripple` folder.
-
-- Wait without interacting to see timed pulse ripples and random autonomous ripples.
-- Click anywhere on the canvas to create a ripple.
-- Click anywhere on the canvas to play the music.
-- Hold the mouse button longer before releasing to create a stronger input ripple.
-- Watch for smaller secondary ripples that may appear near input-generated ripples.
-- Also canvas will adapt to the screen size.
