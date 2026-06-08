@@ -1,6 +1,13 @@
 // Time-based mechanic — Ruidong Xu
 // Controls ripple lifecycles with non-linear easing,
 // and generates autonomous pulse events from the canvas centre.
+//
+// Timing is handled via millis() rather than setInterval() because
+// setInterval() is a native JS function that runs asynchronously on a
+// separate timeline from p5's draw() loop. This means its callback can
+// fire mid-frame while the canvas is in an intermediate state, risking
+// data conflicts and visual glitches. millis() is checked once per frame
+// inside draw(), keeping all state changes synchronised with the render cycle.
 
 let lastPulseTime = 0;
 let nextPulseDelay = 4000;
@@ -20,16 +27,13 @@ function getTimeMechanicValue(ripple) {
                    ripple.source === 'input' ? 5000 : 6000;
   const age = millis() - ripple.createdAt;
   const t = constrain(age / lifetime, 0, 1);
-  const alphaT = ripple.source === 'secondary'
-    ? constrain(age / (lifetime * 0.5), 0, 1)
-    : t;
 
   // easeInQuad: slow start, faster expansion — mimics real water physics
   const maxRadius = max(windowWidth, windowHeight) * 0.65;
   const radius = maxRadius * easeInQuad(t);
 
   // easeOutCubic: quick initial fade that lingers — more natural dissipation
-  const alpha = 255 * easeOutCubic(1 - alphaT);
+  const alpha = 255 * easeOutCubic(1 - t);
 
   return { radius, alpha };
 }
