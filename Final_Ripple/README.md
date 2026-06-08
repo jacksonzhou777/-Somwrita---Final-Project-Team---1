@@ -29,10 +29,9 @@ The project is structured so that each mechanic returns values or events, while 
 Open `index.html` in the `Final_Ripple` folder.
 
 - Wait without interacting to see timed pulse ripples and random autonomous ripples.
-- Hold and release the mouse to throw a "skipping stone". The longer you hold, the more bounces you get. The ripples will travel towards the center and get smaller each time.
+- Watch for smaller secondary ripples that may appear near random-generated ripples.
 - Click anywhere on the canvas to play the music.
-- Hold the mouse button longer before releasing to create a stronger input ripple.
-- Watch for smaller secondary ripples that may appear near input-generated ripples.
+- Hold and release the mouse to throw a "skipping stone". The longer you hold, the more bounces you get. The ripples will travel towards the center and get smaller each time.
 - Also canvas will adapt to the screen size.
 
 ## Mechanic Ownership
@@ -47,7 +46,7 @@ The audio mechanic is designed to connect sound with the ripple system. Its valu
 
 **Huginn Xing - Noise and Randomness**
 
-The noise and randomness mechanic adds organic variation to the piece. It creates random autonomous ripples, gives each ripple a different noise profile, uses Perlin noise to distort ripple edges, and adds short-lived secondary ripples around input-generated ripples. Secondary ripples use the same color as their parent input ripple, only show two rings, and fade faster so they feel like smaller chain reactions.
+The noise and randomness mechanic adds organic variation to the piece. It creates random autonomous ripples, gives each ripple a different noise profile, uses Perlin noise to distort ripple edges, and adds short-lived secondary ripples around random-generated ripples. Secondary ripples use the same color as their parent ripple, only show two rings, and fade faster so they feel like smaller chain reactions.
 
 **Ruidong Xu - Time-Based System**
 

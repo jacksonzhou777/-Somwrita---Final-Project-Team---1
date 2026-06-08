@@ -1,6 +1,6 @@
 // Noise and randomness mechanic - Huginn Xing
 // Adds organic variation through Perlin noise,
-// autonomous random ripples, and input-triggered secondary ripples.
+// autonomous random ripples, and random-triggered secondary ripples.
 
 let nextRandomRippleTime = 0;
 
@@ -57,10 +57,10 @@ function getRandomRippleProfile(source, colorOverride) {
 }
 
 // Called every frame for each active ripple.
-// ChatGPT helped generate this secondary ripple logic: only input ripples
-// can trigger short-lived nearby chain reactions with inherited color.
+// ChatGPT helped generate this secondary ripple logic: only random ripples
+// can trigger nearby chain reactions with inherited color.
 function getSecondaryRippleValue(ripple) {
-  if (ripple.source !== "input" || ripple.hasCreatedSecondary) {
+  if (ripple.source !== "random" || ripple.hasCreatedSecondary) {
     return {
       shouldCreateRipple: false,
       positions: []
@@ -110,7 +110,7 @@ function getSecondaryRippleValue(ripple) {
 }
 
 // Chooses the base color for new ripples.
-// Secondary ripples inherit their input ripple color through colorOverride.
+// Secondary ripples inherit their random ripple color through colorOverride.
 function getRippleColor(source) {
   if (source === "input") {
     return {

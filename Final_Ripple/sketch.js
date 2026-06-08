@@ -40,6 +40,14 @@ function draw() {
 
   for (let i = ripples.length - 1; i >= 0; i--) {
     const ripple = ripples[i];
+    const secondaryValue = getSecondaryRippleValue(ripple);
+
+    if (secondaryValue.shouldCreateRipple) {
+      for (const position of secondaryValue.positions) {
+        createRipple(position.x,position.y,"secondary",position.intensity,position.color);
+      }
+    }
+
     const timeValue = getTimeMechanicValue(ripple);
     const noiseValue = getNoiseMechanicValue(ripple,audioValue);
 
@@ -53,11 +61,11 @@ function draw() {
 
 }
 
-function createRipple(x, y, source, intensity = 1) {
+function createRipple(x, y, source, intensity = 1, colorOverride) {
 
-  const randomProfile = getRandomRippleProfile(source);
+  const randomProfile = getRandomRippleProfile(source,colorOverride);
 
-  if (source === "input" || source === "time") {
+  if (source === "input" || source === "time" || source === "secondary") {
     randomProfile.baseNoiseStrength *= intensity;
   }
 
