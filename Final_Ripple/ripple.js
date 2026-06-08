@@ -73,8 +73,11 @@ class Ripple {
       for (let i = 0; i < particleCount; i++) {
 
         const angle =(TWO_PI * i) / particleCount;
-        const waveOffset = sin(frameCount * 0.05 + i * 0.3) * 1.5;
-        const r = ringRadius + waveOffset;
+        const noiseX = cos(angle) * this.noiseScale + this.seed;
+        const noiseY = sin(angle) * this.noiseScale + this.seed;
+        const n = noise(noiseX,noiseY,this.noiseSpeed);
+        const offset = map(n,0,1,-this.noiseStrength,this.noiseStrength);
+        const r = ringRadius + offset;
         const x = this.x + cos(angle) * r;
         const y =this.y + sin(angle) * r * 0.42;
         const size = map(this.noiseStrength,0,50,2,3,true);
@@ -117,7 +120,6 @@ class Ripple {
   const d = dist(px,py,other.x,other.y);
   const otherAge = millis() - other.createdAt;
   const wave = sin(d * 0.06 - otherAge * 0.003) * (other.alpha / 255);
-
   r += wave * 4;
 }
 
@@ -133,23 +135,12 @@ class Ripple {
 }
 
 function getNoiseMechanicValue(ripple,audioValue) {
-
   let audioBoost = 0;
-
   if (ripple.source === "audio") {
-
     audioBoost = map(audioValue.treble,0,255,0,40,true);
   }
-
+ 
   return {
-
-    strength:
-      ripple.baseNoiseStrength + audioBoost,
-
-    scale:
-      ripple.noiseScale,
-
-    speed:
-      frameCount * 0.012
+    strength:ripple.baseNoiseStrength + audioBoost,scale:ripple.noiseScale,speed:frameCount * 0.012
   };
 }
