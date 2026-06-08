@@ -30,7 +30,7 @@ The user input mechanic turns mouse interaction into ripple events. A longer pre
 
 **Shan Jin - Audio**
 
-The audio mechanic is designed to connect sound with the ripple system. Its value can be used to increase ripple deformation, allowing voice or music to influence the movement of the water surface.
+The audio mechanic is designed to connect sound with the ripple system. Its value can be used to increase ripple deformation, allowing music to influence the movement of the water surface. (Ripples are a particle state, distinct from random)
 
 **Huginn Xing - Noise and Randomness**
 
