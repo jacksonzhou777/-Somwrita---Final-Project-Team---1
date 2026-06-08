@@ -37,7 +37,6 @@ function draw() {
     createRipple(pulseValue.x,pulseValue.y,"time",pulseValue.intensity);
   }
 
-  blendMode(SCREEN);
 
   for (let i = ripples.length - 1; i >= 0; i--) {
     const ripple = ripples[i];
@@ -52,7 +51,6 @@ function draw() {
     }
   }
 
-  blendMode(BLEND);
 }
 
 function createRipple(x, y, source, intensity = 1) {
@@ -63,7 +61,9 @@ function createRipple(x, y, source, intensity = 1) {
     randomProfile.baseNoiseStrength *= intensity;
   }
 
-  ripples.push(new Ripple(x,y,source,randomProfile));
+  let newRipple = new Ripple(x, y, source, randomProfile);
+  newRipple.intensity = intensity;
+  ripples.push(newRipple);
 }
 
 function mousePressed() {
@@ -77,6 +77,14 @@ function mousePressed() {
 
     canvasPressed = true;
   }
+  onInputMousePressed();
+}
+function mouseReleased() {
+  onInputMouseReleased();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth,windowHeight);
 }
 
 function windowResized() {

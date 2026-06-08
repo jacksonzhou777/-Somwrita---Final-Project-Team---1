@@ -12,6 +12,9 @@ class Ripple {
     this.baseNoiseStrength = randomProfile.baseNoiseStrength;
     this.strokeWeight = randomProfile.strokeWeight;
     this.audioScale = 1;
+    this.r = randomProfile.r;
+    this.g = randomProfile.g;
+    this.b = randomProfile.b;
   }
 
   update(timeValue,noiseValue,audioValue) {
@@ -26,8 +29,8 @@ class Ripple {
     if (this.source === "audio") {
   this.radius = timeValue.radius * 0.4;
 } else {
-  this.radius = timeValue.radius;
-}
+  this.radius = timeValue.radius * (this.intensity || 1); 
+    }
 
     this.alpha = timeValue.alpha;
     this.noiseStrength = noiseValue.strength;
@@ -91,7 +94,8 @@ class Ripple {
 
   displayRing(radiusMultiplier,alphaMultiplier,allRipples) {
 
-    stroke(180,210,200,this.alpha * alphaMultiplier);
+    stroke(this.r, this.g, this.b, this.alpha * alphaMultiplier);
+    
     strokeWeight(1.2);
     noFill();
     beginShape();
@@ -103,8 +107,8 @@ class Ripple {
       const noiseX = cos(angle) * this.noiseScale + this.seed;
       const noiseY = sin(angle) * this.noiseScale + this.seed;
       const n = noise(noiseX,noiseY,this.noiseSpeed);
-      const offset = map(n,0,1,-this.noiseStrength * 0.25,this.noiseStrength * 0.25);
-
+      const offset = map(n, 0, 1, -this.noiseStrength, this.noiseStrength);
+      
       let r =this.radius *radiusMultiplier +offset;
 
       for (const other of allRipples) {

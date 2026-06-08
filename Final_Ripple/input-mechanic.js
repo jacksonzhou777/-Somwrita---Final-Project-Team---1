@@ -7,16 +7,15 @@ let rippleIntensity = 1;
 function setupInputMechanic() {
 }
 
-function mousePressed() {
+function onInputMousePressed() {
   pressStartTime = millis();
 }
 
-function mouseReleased() {
+function onInputMouseReleased() {
   let pressDuration = millis() - pressStartTime;
   
-  pressDuration = constrain(pressDuration, 0, 2000); 
-  
-  rippleIntensity = map(pressDuration, 0, 2000, 0.5, 3.0); 
+  pressDuration = constrain(pressDuration, 0, 3000); 
+  rippleIntensity = map(pressDuration, 0, 3000, 0.05, 8.0);
 
   rippleX = mouseX;
   rippleY = mouseY;
