@@ -11,13 +11,13 @@ function onInputMousePressed() {
 function onInputMouseReleased() {
   let pressDuration = millis() - pressStartTime;
   
-  pressDuration = constrain(pressDuration, 0, 2000); 
+  pressDuration = constrain(pressDuration, 0, 1800); 
 
-  let initialIntensity = map(pressDuration, 0, 2000, 0.5, 2);
+  let initialIntensity = map(pressDuration, 0, 1800, 0.5, 2);
   
-  let skipCount = floor(map(pressDuration, 0, 2000, 3, 12));
+  let skipCount = floor(map(pressDuration, 0, 1800, 4, 12));
   
-  let skipDistance = map(pressDuration, 0, 2000, 20, 150);
+  let skipDistance = map(pressDuration, 0, 1800, 20, 150);
 
   let targetX = width / 2;
   let targetY = height / 2;
