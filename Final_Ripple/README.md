@@ -19,6 +19,7 @@ Key p5.js techniques include:
 - `sin()`, `cos()`, and `vertex()` to draw custom distorted elliptical rings.
 - `blendMode(SCREEN)` to make overlapping rings glow like light reflecting on water.
 - `mousePressed()` and `mouseReleased()` to turn user input into ripple energy.
+- `atan2()` to calculate the exact angle from the user's mouse click to the canvas center, ensuring the skipping stone ripples always travel inward.
 - `p5.FFT()` to analyse bass and treble frequency content from the audio track and drive ripple behaviour.
 - `loadSound()` and `p5.Amplitude()` to load audio files and measure sound intensity for audio-reactive interactions.
 
@@ -38,7 +39,7 @@ Open `index.html` in the `Final_Ripple` folder.
 
 **Ruitong Zhou - User Input**
 
-The user input mechanic turns mouse clicks into a "skipping stone" effect. How long you hold the mouse decides how big the ripple is, how many times it bounces, and how far it goes. It uses atan2 to make the ripples always move towards the center of the screen. Each bounce gets smaller and smaller, making it look like real energy fading away.
+The user input mechanic turns mouse clicks into a "skipping stone" effect. How long you hold the mouse decides how big the ripple is, how many times it bounces, and how far it goes. It uses atan2() to make the ripples always move towards the center of the screen. Each bounce gets smaller and smaller, making it look like real energy fading away.
 
 **Shan Jin - Audio**
 
@@ -54,13 +55,13 @@ The time-based mechanic controls ripple lifecycle and autonomous pulse events. I
 
 ## AI Acknowledgement
 
-ChatGPT was used to help review the project structure, explain how the four mechanics connect, and assist with writing some logic sturcuture like secondary ripple generation.
+ChatGPT was used to help review the project structure, explain how the four mechanics connect, and assist with writing some logic structure like secondary ripple generation.
 
-ChatGPT was also used to check grammar and sentence sturcture to enhance readibility.
+ChatGPT was also used to check grammar and sentence structure to enhance readability.
 
 ## External References
 
 - [p5.js](https://p5js.org/) was used as the main creative coding library for drawing, timing, randomness, noise, and interaction.
 - [p5.sound](https://p5js.org/reference/#/libraries/p5.sound) was included for the audio mechanic.
 - [p5.js noise reference](https://p5js.org/reference/#/p5/noise) influenced the Perlin noise technique used to distort the ripple edges.
-
+- [p5.js atan2 reference](https://p5js.org/reference/p5/atan2/) helped in calculating the precise directional trajectory for the user input interaction.

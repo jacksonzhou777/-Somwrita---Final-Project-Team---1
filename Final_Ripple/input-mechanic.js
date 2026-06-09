@@ -15,13 +15,14 @@ function onInputMouseReleased() {
 
   let initialIntensity = map(pressDuration, 0, 1800, 0.5, 2);
   
-  let skipCount = floor(map(pressDuration, 0, 1800, 4, 12));
+  let skipCount = floor(map(pressDuration, 0, 1800, 3, 12));
   
-  let skipDistance = map(pressDuration, 0, 1800, 20, 150);
+  let skipDistance = map(pressDuration, 0, 1800, 40, 180);
 
   let targetX = width / 2;
   let targetY = height / 2;
   
+  // Calculate the exact angle pointing from the mouse click towards the center of the canvas
   let baseAngle = atan2(targetY - mouseY, targetX - mouseX);
   
   let angle = baseAngle + random(-PI/6, PI/6);
@@ -32,13 +33,13 @@ function onInputMouseReleased() {
 
   for (let i = 0; i < skipCount; i++) {
     
-    let currentIntensity = initialIntensity * pow(0.7, i);
+    let currentIntensity = initialIntensity * pow(0.6, i);
 
     skipQueue.push({
       x: currentX,
       y: currentY,
       intensity: currentIntensity,
-      triggerTime: currentTime + i * 250 
+      triggerTime: currentTime + i * 300 
     });
 
     currentX += cos(angle) * skipDistance;
